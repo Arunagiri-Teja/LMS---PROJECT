@@ -1,0 +1,173 @@
+course list program
+
+1 html code
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Listing - LMS</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Explore Our Courses</h1>
+    <input type="text" id="search" placeholder="Search courses..." onkeyup="filterCourses()" />
+  </header>
+
+  <div class="course-container" id="courseContainer">
+    <div class="course-card">
+      <img src="https://img.freepik.com/free-photo/html-system-websites-concept\_23-2150323523.jpg" alt="Full Stack" />
+      <div class="course-info">
+        <h3>Full Stack Development</h3>
+        <p>Learn HTML, CSS, JS & backend integration.</p>
+        <div class="rating">⭐⭐⭐⭐☆</div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="https://img.freepik.com/free-vector/gradient-software-engineering-illustration\_23-2149379752.jpg" alt="DSA" />
+      <div class="course-info">
+        <h3>Data Structures in Java</h3>
+        <p>Master DSA concepts using Java language.</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="https://img.freepik.com/free-vector/cloud-hosting-concept-illustration\_114360-4463.jpg" alt="Cloud" />
+      <div class="course-info">
+        <h3>Cloud Computing Basics</h3>
+        <p>Intro to AWS, Azure, and Google Cloud Platform.</p>
+        <div class="rating">⭐⭐⭐⭐☆</div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="https://img.freepik.com/free-vector/artificial-intelligence-brain-technology-background\_1017-23833.jpg" alt="AI" />
+      <div class="course-info">
+        <h3>Artificial Intelligence</h3>
+        <p>Understand AI concepts and use cases in real life.</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="https://img.freepik.com/free-vector/python-programming-language\_23-2148721669.jpg" alt="Python" />
+      <div class="course-info">
+        <h3>Python for Beginners</h3>
+        <p>Start coding with Python from scratch.</p>
+        <div class="rating">⭐⭐⭐⭐☆</div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="https://img.freepik.com/free-vector/cyber-security-concept\_23-2148532223.jpg" alt="Cybersecurity" />
+      <div class="course-info">
+        <h3>Cybersecurity Fundamentals</h3>
+        <p>Protect systems from threats and learn ethical hacking.</p>
+        <div class="rating">⭐⭐⭐⭐☆</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+2 CSS CODE
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    padding: 20px;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  #search {
+    margin-top: 15px;
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .course-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .course-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .course-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .course-info {
+    padding: 15px;
+  }
+  
+  .course-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .course-info p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .rating {
+    color: gold;
+    font-size: 1rem;
+  }
+  
+3 Java script Code
+
+function filterCourses() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.getElementsByClassName("course-card");
+  
+    Array.from(cards).forEach((card) => {
+      let title = card.querySelector("h3").textContent.toLowerCase();
+      if (title.includes(input)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+  
