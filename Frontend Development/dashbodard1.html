@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f3f4f8;
+      color: #343a40;
+    }
+    
+    header {
+      background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom: 2px solid #d1c4e9;
+    }
+    .sidebar {
+      width: 220px;
+      background: #e0e0f8;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      border-right: 2px solid #d1c4e9;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .menu-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu-box li {
+      margin: 15px 0;
+    }
+    .menu-box a {
+      text-decoration: none;
+      color: #495057;
+      background: white;
+      padding: 10px 15px;
+      border-radius: 12px;
+      display: block;
+      transition: 0.3s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .menu-box a:hover {
+      background: linear-gradient(90deg, #c1c1ff, #e6ccff);
+      transform: translateX(5px);
+    }
+    main {
+      margin-left: 260px;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin-bottom: 30px;
+      text-align: center;
+      border: 1px solid #ddd;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    h2 {
+      color: #4e4e8b;
+      margin-bottom: 15px;
+    }
+    .quote {
+      color: #6c757d;
+      font-style: italic;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .settings-option, .profile-detail, .course-item {
+      text-align: left;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f9f9ff;
+      border: 1px solid #e0e0f8;
+    }
+    button {
+      background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #c1c1ff, #e6ccff);
+    }
+    #editProfileModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+<header>Student Dashboard</header>
+
+<aside class="sidebar" id="sidebar">
+  <h2>Menu</h2>
+  <div class="menu-box">
+    <ul>
+      <li><a href="#" onclick="showGreeting(this)" class="active">🏠 Dashboard</a></li>
+      <li><a href="#" onclick="showProfile(this)">👤 Profile</a></li>
+      <li><a href="#" onclick="showCourses(this)">📚 My Courses</a></li>
+      <li><a href="#" onclick="showSettings(this)">⚙️ Settings</a></li>
+    </ul>
+  </div>
+</aside>
+
+
+<main>
+  <div id="greetingCard" class="card">
+    <div id="dashboardPhotoContainer" style="margin-bottom: 10px;"></div>
+    <h2 id="greetingText"></h2>
+    <p class="quote" id="quoteText"></p>
+  </div>
+
+  <div id="profileCard" class="card" style="display:none;">
+    <h2>👤 Student Profile</h2>
+    <div class="profile-detail">Name: Deepa Hiremath</div>
+    <div class="profile-detail">Student ID: 12345</div>
+    <div class="profile-detail">Email: deepa@example.com</div>
+    <div class="profile-detail">Phone: +91-9876543210</div>
+    <button onclick="openEditProfileModal()">✏️ Edit Profile</button>
+    <div id="profilePhotoContainer" style="margin-top: 10px;"></div>
+  </div>
+
+  <div id="coursesCard" class="card" style="display:none;">
+    <h2>📚 My Courses</h2>
+    <div class="course-item">🌐 Web Development - Instructor: Mr. Smith - Status: Active</div>
+    <div class="course-item">☕ Java Programming - Instructor: Ms. John - Status: Completed</div>
+    <div class="course-item">🗄️ Database Management - Instructor: Mr. Raj - Status: Active</div>
+    <button onclick="alert('Enroll in New Course Clicked')">➕ Enroll in New Course</button>
+  </div>
+
+  <div id="settingsCard" class="card" style="display:none;">
+    <h2>⚙️ Settings</h2>
+    <div class="settings-option">
+      <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Enable Dark Mode
+    </div>
+    <div class="settings-option">
+      <input type="checkbox" id="notificationToggle"> Receive Notifications
+    </div>
+    <div class="settings-option">
+      <label for="languageSelect">Language:</label>
+      <select id="languageSelect">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Kannada</option>
+      </select>
+    </div>
+    <button onclick="logout()">🚪 Logout</button>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div id="editProfileModal">
+    <h3>Edit Profile</h3>
+    <input type="text" id="editName" placeholder="Name" style="display: block; margin: 10px 0; padding: 5px;">
+    <input type="text" id="editEmail" placeholder="Email" style="display: block; margin: 10px 0; padding: 5px;">
+    <input type="text" id="editPhone" placeholder="Phone" style="display: block; margin: 10px 0; padding: 5px;">
+    <input type="file" id="editPhoto" accept="image/*" style="display: block; margin: 10px 0;">
+    <button onclick="saveProfileChanges()">💾 Save</button>
+    <button onclick="closeEditProfileModal()">❌ Cancel</button>
+  </div>
+</main>
+
+<script>
+  const quotes = [
+    "Believe in yourself!",
+    "Never stop learning.",
+    "Success is no accident.",
+    "Learning never exhausts the mind.",
+    "The best way to predict the future is to create it."
+  ];
+
+  function hideAll() {
+    document.getElementById('greetingCard').style.display = 'none';
+    document.getElementById('profileCard').style.display = 'none';
+    document.getElementById('coursesCard').style.display = 'none';
+    document.getElementById('settingsCard').style.display = 'none';
+  }
+
+  function showGreeting() {
+    hideAll();
+    document.getElementById('greetingCard').style.display = 'block';
+    const hour = new Date().getHours();
+    let greet;
+    if (hour < 12) greet = 'Good Morning';
+    else if (hour < 17) greet = 'Good Afternoon';
+    else greet = 'Good Evening';
+    document.getElementById('greetingText').innerText = `${greet}, Deepa Hiremath!`;
+    document.getElementById('quoteText').innerText = quotes[Math.floor(Math.random() * quotes.length)];
+  }
+
+  function showProfile() {
+    hideAll();
+    document.getElementById('profileCard').style.display = 'block';
+  }
+
+  function showCourses() {
+    hideAll();
+    document.getElementById('coursesCard').style.display = 'block';
+  }
+
+  function showSettings() {
+    hideAll();
+    document.getElementById('settingsCard').style.display = 'block';
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  function logout() {
+    alert('You have been logged out!');
+  }
+
+  function openEditProfileModal() {
+    document.getElementById('editProfileModal').style.display = 'block';
+    document.getElementById('editName').value = document.querySelector('#profileCard .profile-detail:nth-child(2)').innerText.replace('Name: ', '');
+    document.getElementById('editEmail').value = document.querySelector('#profileCard .profile-detail:nth-child(4)').innerText.replace('Email: ', '');
+    document.getElementById('editPhone').value = document.querySelector('#profileCard .profile-detail:nth-child(5)').innerText.replace('Phone: ', '');
+  }
+
+  function closeEditProfileModal() {
+    document.getElementById('editProfileModal').style.display = 'none';
+  }
+
+  function saveProfileChanges() {
+    const name = document.getElementById('editName').value;
+    const email = document.getElementById('editEmail').value;
+    const phone = document.getElementById('editPhone').value;
+    const photo = document.getElementById('editPhoto').files[0];
+
+    document.querySelector('#profileCard .profile-detail:nth-child(2)').innerText = 'Name: ' + name;
+    document.querySelector('#profileCard .profile-detail:nth-child(4)').innerText = 'Email: ' + email;
+    document.querySelector('#profileCard .profile-detail:nth-child(5)').innerText = 'Phone: ' + phone;
+    document.getElementById('greetingText').innerText = `Hello, ${name}!`;
+
+    if(photo){
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('profilePhotoContainer').innerHTML = `<img src="${e.target.result}" style="width:100px; height:100px; border-radius:50%; margin-top:10px;">`;
+        document.getElementById('dashboardPhotoContainer').innerHTML = `<img src="${e.target.result}" style="width:80px; height:80px; border-radius:50%; margin-bottom:10px;">`;
+      };
+      reader.readAsDataURL(photo);
+    }
+
+    closeEditProfileModal();
+    alert('Profile updated successfully!');
+  }
+
+  window.onload = showGreeting;
+</script>
+
+</body>
+</html>
