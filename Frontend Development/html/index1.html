@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #8e9eab, #eef2f3);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.terms-wrapper {
+  padding: 20px;
+}
+.terms-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  width: 90%;
+  max-width: 600px;
+  padding: 30px;
+  color: #333;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.terms-card h1 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 26px;
+}
+.terms-content {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  height: 200px;
+  overflow-y: auto;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.7;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+.terms-content ul {
+  margin: 10px 0 0 20px;
+}
+.terms-content li {
+  margin-bottom: 10px;
+}
+.accept-area {
+  margin: 20px 0;
+}
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 15px;
+}
+.custom-checkbox input {
+  display: none;
+}
+.custom-checkbox .checkmark {
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-right: 10px;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease;
+}
+.custom-checkbox input:checked + .checkmark {
+  background-color: #007bff;
+  border-color: #007bff;
+  position: relative;
+}
+.custom-checkbox input:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.continue-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+.continue-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+footer {
+  margin-top: 25px;
+  font-size: 13px;
+  color: #666;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="terms-wrapper">
+    <div class="terms-card">
+      <h1>📜 Terms & Conditions</h1>
+
+      <div class="terms-content">
+        <p>Welcome to our Learning Management System. Please read the following terms carefully:</p>
+        <ul>
+          <li>All users must provide valid and truthful registration information.</li>
+          <li>Sharing your login credentials is strictly prohibited.</li>
+          <li>No offensive or copyrighted material may be uploaded.</li>
+          <li>Premium content purchases are final and non-refundable.</li>
+          <li>Violation of any terms may result in account suspension or ban.</li>
+        </ul>
+        <p>By proceeding, you agree to follow these rules to keep our platform safe and effective for all learners. Thank you!</p>
+      </div>
+
+      <div class="accept-area">
+        <label class="custom-checkbox">
+          <input type="checkbox" />
+          <span class="checkmark"></span>
+          I accept the Terms & Conditions
+        </label>
+      </div>
+
+      <a href="#" class="continue-btn">Continue</a>
+
+      <footer>© 2025 LMS Platform. All rights reserved.</footer>
+    </div>
+  </div>
+</body>
+</html>
