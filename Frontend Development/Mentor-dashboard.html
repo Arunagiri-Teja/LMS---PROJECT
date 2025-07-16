@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mentor Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f3f4f8;
+      color: #343a40;
+    }
+    header {
+      background: linear-gradient(90deg, #43cea2, #185a9d);
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+    .sidebar {
+      width: 220px;
+      background: #e0f7fa;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      border-right: 2px solid #80deea;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .menu-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu-box li {
+      margin: 15px 0;
+    }
+    .menu-box a {
+      text-decoration: none;
+      color: #006064;
+      background: white;
+      padding: 10px 15px;
+      border-radius: 12px;
+      display: block;
+      transition: 0.3s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .menu-box a:hover {
+      background: linear-gradient(90deg, #80deea, #e0f7fa);
+      transform: translateX(5px);
+    }
+    main {
+      margin-left: 260px;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin-bottom: 30px;
+      text-align: center;
+      border: 1px solid #ddd;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    h2 {
+      color: #006064;
+      margin-bottom: 15px;
+    }
+    .profile-detail, .mentee-item, .settings-option {
+      text-align: left;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f1f8e9;
+      border: 1px solid #dcedc8;
+    }
+    button {
+      background: linear-gradient(90deg, #43cea2, #185a9d);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #80deea, #00acc1);
+    }
+    #editProfileModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+<header>Mentor Dashboard</header>
+
+<aside class="sidebar">
+  <h2>Menu</h2>
+  <div class="menu-box">
+    <ul>
+      <li><a href="#" onclick="showGreeting()">🏠 Dashboard</a></li>
+      <li><a href="#" onclick="showProfile()">👨‍🏫 Profile</a></li>
+      <li><a href="#" onclick="showMentees()">👥 Mentees</a></li>
+      <li><a href="#" onclick="showAddCourse()">➕ Add Course</a></li>
+      <li><a href="#" onclick="showFeedback()">📝 View Feedback</a></li>
+      <li><a href="#" onclick="showSettings()">⚙️ Settings</a></li>
+    </ul>
+  </div>
+</aside>
+
+<main>
+  <div id="greetingCard" class="card">
+    <h2>Welcome, Deepa Hiremath!</h2>
+    <p class="quote" id="quoteText"></p>
+  </div>
+
+  <div id="profileCard" class="card" style="display:none;">
+    <h2>👨‍🏫 Mentor Profile</h2>
+    <div class="profile-detail">Name: Deepa Hiremath</div>
+    <div class="profile-detail">Mentor ID: M-7890</div>
+    <div class="profile-detail">Email: mentor.deepa@example.com</div>
+    <div class="profile-detail">Phone: +91-9876543210</div>
+    <button onclick="openEditProfileModal()">✏️ Edit Profile</button>
+  </div>
+
+  <div id="menteesCard" class="card" style="display:none;">
+    <h2>👥 My Mentees</h2>
+    <div class="mentee-item">👤 Asha R - Web Development</div>
+    <div class="mentee-item">👤 Ravi K - Java Programming</div>
+    <div class="mentee-item">👤 Sneha P - Database Management</div>
+    <button onclick="alert('Add New Mentee Clicked')">➕ Add New Mentee</button>
+  </div>
+
+  <div id="addCourseCard" class="card" style="display:none;">
+    <h2>➕ Add New Course</h2>
+    <input type="text" placeholder="Course Name" style="padding: 5px; width: 80%; margin: 10px 0;">
+    <button onclick="alert('Course Added Successfully!')">💾 Save Course</button>
+  </div>
+
+  <div id="feedbackCard" class="card" style="display:none;">
+    <h2>📝 Feedback from Students</h2>
+    <div class="mentee-item">"Great teaching style!" - Asha R</div>
+    <div class="mentee-item">"Very supportive mentor." - Ravi K</div>
+    <div class="mentee-item">"Helped me clear doubts anytime." - Sneha P</div>
+  </div>
+
+  <div id="settingsCard" class="card" style="display:none;">
+    <h2>⚙️ Settings</h2>
+    <div class="settings-option">
+      <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Enable Dark Mode
+    </div>
+    <div class="settings-option">
+      <input type="checkbox" id="notificationToggle"> Receive Notifications
+    </div>
+    <button onclick="logout()">🚪 Logout</button>
+  </div>
+
+  <div id="editProfileModal">
+    <h3>Edit Profile</h3>
+    <input type="text" id="editName" placeholder="Name" style="display:block; margin:10px 0; padding:5px;">
+    <input type="email" id="editEmail" placeholder="Email" style="display:block; margin:10px 0; padding:5px;">
+    <input type="text" id="editPhone" placeholder="Phone" style="display:block; margin:10px 0; padding:5px;">
+    <button onclick="saveProfileChanges()">💾 Save</button>
+    <button onclick="closeEditProfileModal()">❌ Cancel</button>
+  </div>
+</main>
+
+<script>
+  const quotes = [
+    "Inspire your mentees to achieve greatness.",
+    "Your guidance makes a difference.",
+    "Every mentee is a future success story.",
+    "Teaching is the art of assisting discovery.",
+    "Be the mentor you wished you had."
+  ];
+
+  function hideAll() {
+    ['greetingCard', 'profileCard', 'menteesCard', 'addCourseCard', 'feedbackCard', 'settingsCard']
+      .forEach(id => document.getElementById(id).style.display = 'none');
+  }
+
+  function showGreeting() {
+    hideAll();
+    document.getElementById('greetingCard').style.display = 'block';
+    document.getElementById('quoteText').innerText = quotes[Math.floor(Math.random() * quotes.length)];
+  }
+
+  function showProfile() {
+    hideAll();
+    document.getElementById('profileCard').style.display = 'block';
+  }
+
+  function showMentees() {
+    hideAll();
+    document.getElementById('menteesCard').style.display = 'block';
+  }
+
+  function showAddCourse() {
+    hideAll();
+    document.getElementById('addCourseCard').style.display = 'block';
+  }
+
+  function showFeedback() {
+    hideAll();
+    document.getElementById('feedbackCard').style.display = 'block';
+  }
+
+  function showSettings() {
+    hideAll();
+    document.getElementById('settingsCard').style.display = 'block';
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  function logout() {
+    alert('You have been logged out!');
+  }
+
+  function openEditProfileModal() {
+    document.getElementById('editProfileModal').style.display = 'block';
+  }
+
+  function closeEditProfileModal() {
+    document.getElementById('editProfileModal').style.display = 'none';
+  }
+
+  function saveProfileChanges() {
+    closeEditProfileModal();
+    alert('Profile updated successfully!');
+  }
+
+  window.onload = showGreeting;
+</script>
+
+</body>
+</html
