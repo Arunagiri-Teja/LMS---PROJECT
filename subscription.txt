@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pricing & Subscription</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .pricing-container {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      color: #0d6efd;
+      margin-bottom: 40px;
+    }
+
+    .plans {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .plan {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .plan h2 {
+      color: #0d6efd;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      font-size: 36px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .duration {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .features {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 25px;
+      min-height: 80px;
+      text-align: left;
+    }
+
+    .subscribe-btn {
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    .subscribe-btn:hover {
+      background-color: #084298;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .plans {
+        flex-direction: column;
+        align-items: center;
+      }
+      .plan {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pricing-container">
+    <h1>Choose Your Subscription Plan</h1>
+
+    <div class="plans">
+
+      <!-- Trial Plan -->
+      <div class="plan">
+        <h2>30-Day Trial</h2>
+        <div class="price">₹1</div>
+        <div class="duration">One-time</div>
+        <div class="features">
+          • Full access for 7 days<br />
+          • Cancel anytime before trial ends<br />
+          • No commitment, cancel anytime<br />
+          • Instant activation — start using immediately
+        </div>
+        <button class="subscribe-btn" onclick="subscribe('Trial')">Start Trial</button>
+      </div>
+
+      <!-- Daily Plan -->
+      <div class="plan">
+        <h2>Daily Plan</h2>
+        <div class="price">₹10</div>
+        <div class="duration">Per Day</div>
+        <div class="features">
+          • Access for 24 hours<br />
+          • Automatic renewal<br />
+          • Cancel anytime before the next billing cycle<br />
+          • Mobile and desktop access included
+        </div>
+        <button class="subscribe-btn" onclick="subscribe('Daily')">Subscribe Daily</button>
+      </div>
+
+      <!-- Monthly Plan -->
+      <div class="plan">
+        <h2>Monthly Plan</h2>
+        <div class="price">₹199</div>
+        <div class="duration">Per Month</div>
+        <div class="features">
+          • Unlimited access<br />
+          • Cancel anytime<br />
+          • Unlimited access to all courses and content<br />
+          • Access on multiple devices (mobile, tablet, desktop)
+        </div>
+        <button class="subscribe-btn" onclick="subscribe('Monthly')">Subscribe Monthly</button>
+      </div>
+
+      <!-- Yearly Plan -->
+      <div class="plan">
+        <h2>Yearly Plan</h2>
+        <div class="price">₹1999</div>
+        <div class="duration">Per Year</div>
+        <div class="features">
+          • Best value<br />
+          • Save over 15% annually<br />
+          • Free certificate of completion for all courses<br />
+          • Unlimited access to all courses and features
+        </div>
+        <button class="subscribe-btn" onclick="subscribe('Yearly')">Subscribe Yearly</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function subscribe(plan) {
+      alert(`You selected the ${plan} subscription plan. Payment flow goes here.`);
+      // TODO: Integrate payment gateway here
+    }
+  </script>
+
+</body>
+</html>
