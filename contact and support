@@ -1,0 +1,289 @@
+
+#contact and suport page code html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact & Support</title>
+  <link rel="stylesheet" href="contact.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <main class="contact-wrapper">
+    <header>
+      <h1><i class="fas fa-headset"></i> Contact & Support</h1>
+      <p>Need help? Fill out the form or connect with us via chat.</p>
+    </header>
+
+    <!-- Contact Form Section -->
+    <section class="form-section">
+      <form id="contactForm" class="contact-form">
+        <div class="form-group">
+          <label for="name"><i class="fas fa-user"></i> Name</label>
+          <input type="text" id="name" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email</label>
+          <input type="email" id="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+          <input type="text" id="subject" placeholder="Subject" required />
+        </div>
+        <div class="form-group">
+          <label for="message"><i class="fas fa-comment-dots"></i> Message</label>
+          <textarea id="message" rows="5" placeholder="Your Message..." required></textarea>
+        </div>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+        <p id="successMsg"></p>
+      </form>
+    </section>
+
+    <!-- Live Chat Support Section -->
+    <section class="chat-links">
+      <h3><i class="fas fa-comments"></i> Live Chat Support</h3>
+      <a href="https://wa.me/919876543210" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+      <a href="https://t.me/yourtelegrambot" target="_blank">
+        <i class="fab fa-telegram"></i> Chat on Telegram
+      </a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+  <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+
+  <div class="faq">
+    <div class="faq-inner">
+      <div class="faq-question">
+        <i class="fas fa-book-open"></i> <strong>How do I enroll in a course?</strong>
+      </div>
+      <div class="faq-answer">
+        Click the <strong>“Enroll Now”</strong> button on the course card. All courses are available for just ₹1.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-inner">
+      <div class="faq-question">
+        <i class="fas fa-clock"></i> <strong>Can I contact support anytime?</strong>
+      </div>
+      <div class="faq-answer">
+        Yes, our support team is available 24/7 via <strong>WhatsApp</strong> and <strong>Telegram</strong> to assist you.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-inner">
+      <div class="faq-question">
+        <i class="fas fa-certificate"></i> <strong>Will I get a certificate?</strong>
+      </div>
+      <div class="faq-answer">
+        Absolutely! You will receive a certificate once you successfully complete any course on our platform.
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <script src="contact.js"></script>
+</body>
+</html>
+
+  
+# css code
+  /* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #d2a03b;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Centered Wrapper */
+.contact-wrapper {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #1d1d1d;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #444;
+  font-size: 1rem;
+}
+
+/* Contact Form */
+.form-section {
+  background: #f8f8f8;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  background-color: #333;
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #111;
+}
+
+#successMsg {
+  margin-top: 10px;
+  color: green;
+  font-weight: 600;
+}
+
+/* Chat Links */
+.chat-links {
+  margin-top: 30px;
+  background: #fff8e1;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.chat-links h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.chat-links a {
+  display: block;
+  margin-bottom: 10px;
+  color: #1b1b1b;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.chat-links a i {
+  margin-right: 8px;
+}
+
+.chat-links a:hover {
+  color: #007bff;
+  transform: translateX(4px);
+}
+
+/* FAQ Section */
+.faq-section {
+  margin-top: 40px;
+  background: #f1f1f1;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.faq-section h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+.faq {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.faq:hover {
+  transform: scale(1.01);
+}
+
+.faq-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-question {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq-answer {
+  font-size: 1rem;
+  color: #444;
+  padding-left: 28px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    font-size: 0.95rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    font-size: 0.95rem;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
