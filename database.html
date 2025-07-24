@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LMS Video Lesson</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #ffffff;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .video-section, .module-section {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .video-section {
+      flex: 3;
+    }
+
+    .module-section {
+      flex: 1;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .navigation-buttons button,
+    .save-button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #add8e6;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .save-button {
+      background-color: #add8e6;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      border-bottom: 2px solid #ddd;
+      background-color: #add8e6;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .tab.active {
+      border-bottom: 3px solid #8e44ad;
+      color: #8e44ad;
+      background-color: #add8e6;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px 0;
+      background-color: #ffffff;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .module-list div {
+      padding: 10px;
+      border-radius: 8px;
+      margin: 5px 0;
+      cursor: pointer;
+      background-color: #add8e6;
+    }
+
+    .module-list div.active {
+      background-color: #add8e6;
+      color: white;
+    }
+
+    .discussion-input,
+    .review-input {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .discussion-input input,
+    .review-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+    }
+
+    .discussion-input button,
+    .review-input button {
+      background-color:#add8e6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .stars {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .stars span {
+      font-size: 24px;
+      color: gold;
+      cursor: pointer;
+    }
+
+    .rating-box {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 15px;
+      background-color: #add8e6;
+    }
+  </style>
+</head>
+<body>
+  <header>Course: Database Management</header>
+
+  <div class="container">
+    <div class="video-section">
+      <video id="courseVideo" controls>
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="navigation-buttons">
+        <button onclick="prevModule()">&larr; Previous</button>
+        <button onclick="nextModule()">Next &rarr;</button>
+        <button class="save-button" onclick="saveVideo()">Save Video</button>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" onclick="openTab('overview')">Overview</div>
+        <div class="tab" onclick="openTab('discussions')">Discussions</div>
+        <div class="tab" onclick="openTab('reviews')">Reviews</div>
+      </div>
+
+      <div id="overview" class="tab-content active">
+       <p>
+           This course provides a complete foundation in Database Management Systems (DBMS). You'll explore data models, SQL queries, normalization, indexing, transactions, and how to manage databases using tools like MySQL, PostgreSQL, and Oracle. Ideal for students and professionals aiming to design and manage reliable, secure, and efficient databases.
+      </p>
+      </div>
+
+
+
+      <div id="discussions" class="tab-content">
+        <h3>Discussions</h3>
+        <div class="discussion-input">
+          <input type="text" placeholder="Comment" id="discussionComment">
+          <button onclick="addDiscussion()">➤</button>
+        </div>
+        <ul id="discussionList"></ul>
+      </div>
+
+      <div id="reviews" class="tab-content">
+        <h3>Reviews</h3>
+        <div class="rating-box">
+          <p>Average Rating</p>
+          <h2 id="averageRating">0.0</h2>
+          <div class="stars" id="averageStars"></div>
+          <p>Rating</p>
+        </div>
+        <div class="review-input">
+          <input type="text" placeholder="Add a review" id="reviewText">
+          <div class="stars" id="userStars"></div>
+          <button onclick="submitReview()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-section">
+      <h3>Course Modules</h3>
+      <div class="module-list" id="moduleList"></div>
+    </div>
+  </div>
+
+  <script>
+    const modules = [
+  { title: '1. Introduction to Database Systems', video: 'video1.mp4' },
+  { title: '2. Data Models and ER Diagrams', video: 'video2.mp4' },
+  { title: '3. Relational Database Concepts', video: 'video3.mp4' },
+  { title: '4. SQL Basics: SELECT, INSERT, UPDATE', video: 'video4.mp4' },
+  { title: '5. Joins, Subqueries and Aggregations', video: 'video5.mp4' },
+  { title: '6. Normalization & Functional Dependencies', video: 'video6.mp4' },
+  { title: '7. Indexing and Query Optimization', video: 'video7.mp4' },
+  { title: '8. Transactions and Concurrency Control', video: 'video8.mp4' },
+  { title: '9. Backup, Recovery & Database Security', video: 'video9.mp4' }
+];
+
+
+
+    let currentModule = 0;
+    let selectedRating = 0;
+    let totalRating = 0;
+    let ratingCount = 0;
+
+    const videoPlayer = document.getElementById('courseVideo');
+    const moduleListEl = document.getElementById('moduleList');
+
+    function loadModules() {
+      moduleListEl.innerHTML = '';
+      modules.forEach((mod, index) => {
+        const div = document.createElement('div');
+        div.textContent = mod.title;
+        div.classList.toggle('active', index === currentModule);
+        div.onclick = () => {
+          currentModule = index;
+          updateModule();
+        };
+        moduleListEl.appendChild(div);
+      });
+    }
+
+    function updateModule() {
+      videoPlayer.src = modules[currentModule].video;
+      loadModules();
+      localStorage.setItem('lastModule', currentModule);
+    }
+
+    function prevModule() {
+      if (currentModule > 0) {
+        currentModule--;
+        updateModule();
+      }
+    }
+
+    function nextModule() {
+      if (currentModule < modules.length - 1) {
+        currentModule++;
+        updateModule();
+      }
+    }
+
+    function saveVideo() {
+      alert(`Video "${modules[currentModule].title}" saved!`);
+    }
+
+    function openTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      document.querySelector(`.tab[onclick*="${tabName}"]`).classList.add('active');
+    }
+
+    function addDiscussion() {
+      const comment = document.getElementById('discussionComment').value;
+      if (comment) {
+        const li = document.createElement('li');
+        li.textContent = comment;
+        document.getElementById('discussionList').appendChild(li);
+        document.getElementById('discussionComment').value = '';
+      }
+    }
+
+    function createStars(container, onClick, filledCount = 0) {
+      container.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.textContent = i <= filledCount ? '★' : '☆';
+        if (onClick) {
+          star.onclick = () => onClick(i);
+        }
+        container.appendChild(star);
+      }
+    }
+
+    function submitReview() {
+      const text = document.getElementById('reviewText').value;
+      if (text && selectedRating > 0) {
+        totalRating += selectedRating;
+        ratingCount++;
+        const avg = (totalRating / ratingCount).toFixed(1);
+        document.getElementById('averageRating').textContent = avg;
+        createStars(document.getElementById('averageStars'), null, Math.round(avg));
+        document.getElementById('reviewText').value = '';
+        selectedRating = 0;
+        createStars(document.getElementById('userStars'), setRating);
+      }
+    }
+
+    function setRating(rating) {
+      selectedRating = rating;
+      createStars(document.getElementById('userStars'), setRating, rating);
+    }
+
+    // Init
+    currentModule = parseInt(localStorage.getItem('lastModule')) || 0;
+    updateModule();
+    createStars(document.getElementById('userStars'), setRating);
+    loadModules();
+  </script>
+</body>
+</html>
